@@ -5,8 +5,8 @@ package com.company.Entity;
  */
 public class Order {
 
-    private String id;
-    private String totalPrice;
+    private int id;
+    private int totalPrice;
     private String createTime;
     private String serviceTime;
     private int type; //护理类型: 1.内科 2.外科 3.妇产科
@@ -17,7 +17,11 @@ public class Order {
     private Patient patient = null;
     private User user = null;
 
-    public Order(String id, String totalPrice, String createTime, String serviceTime, int type, int situation, int choseNurse, Nurse nurse, Patient patient, User user) {
+    public Order(){
+
+    }
+
+    public Order(int id, int totalPrice, String createTime, String serviceTime, int type, int situation, int choseNurse, Nurse nurse, Patient patient, User user) {
         this.id = id;
         this.totalPrice = totalPrice;
         this.createTime = createTime;
@@ -25,24 +29,24 @@ public class Order {
         this.type = type;
         this.situation = situation;
         this.choseNurse = choseNurse;
-        this.nurse = nurse;
-        this.patient = patient;
-        this.user = user;
+        this.setNurse(nurse);
+        this.setPatient(patient);
+        this.setUser(user);
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getTotalPrice() {
+    public int getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(String totalPrice) {
+    public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
     }
 
@@ -86,4 +90,27 @@ public class Order {
         this.choseNurse = choseNurse;
     }
 
+    public Nurse getNurse() {
+        return nurse;
+    }
+
+    public void setNurse(Nurse nurse) {
+        this.nurse = nurse;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

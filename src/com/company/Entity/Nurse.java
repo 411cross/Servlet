@@ -5,8 +5,8 @@ package com.company.Entity;
  */
 public class Nurse {
     private String nurseName; //姓名
-    private int NurseId; //id
-    private String nurseSex; //性别
+    private int nurseId; //id
+    private int nurseSex; //性别
     private int nurseAge;  //年龄
     private int nurseWorkAge; //护龄
     private String nurseArea; //地区
@@ -21,34 +21,56 @@ public class Nurse {
     private String nurseConstellation; //星座
     private String nurseAnimal; //生肖
     private String nurseDescription; //个人介绍
+    private String nursePhone;//电话
 
+    public Nurse(){
 
-    public Nurse(String nurseName, int nurseId, String nurseSex, int nurseAge, int nurseWorkAge, String nurseArea, int nurseEvaluate, int nursePrice, String[] nurseProtectArea, int nurseHeigt, int nurseWeight, String nurseBloodType, String nurseNation, String nurseIdentity, String nurseConstellation, String nurseAnimal, String nurseDescription) {
-        nurseName = nurseName;
-        nurseId = nurseId;
-        nurseSex = nurseSex;
-        nurseAge = nurseAge;
-        nurseWorkAge = nurseWorkAge;
-        nurseArea = nurseArea;
-        nurseEvaluate = nurseEvaluate;
-        nursePrice = nursePrice;
-        nurseProtectArea = nurseProtectArea;
-        nurseHeigt = nurseHeigt;
-        nurseWeight = nurseWeight;
-        nurseBloodType = nurseBloodType;
-        nurseNation = nurseNation;
-        nurseIdentity = nurseIdentity;
-        nurseConstellation = nurseConstellation;
-        nurseAnimal = nurseAnimal;
-        nurseDescription = nurseDescription;
     }
+
+    public Nurse(String nurseName, int nurseId, int nurseSex, int nurseAge, int nurseWorkAge, String nurseArea, int nurseEvaluate, int nursePrice, String[] nurseProtectArea, int nurseHeigt, int nurseWeight, String nurseBloodType, String nurseNation, String nurseIdentity, String nurseConstellation, String nurseAnimal, String nurseDescription, String nursePhone) {
+        this.setNurseName(nurseName);
+        this.setNurseId(nurseId);
+        this.setNurseSex(nurseSex);
+        this.setNurseAge(nurseAge);
+        this.setNurseWorkAge(nurseWorkAge);
+        this.setNurseArea(nurseArea);
+        this.setNurseEvaluate(nurseEvaluate);
+        this.setNursePrice(nursePrice);
+        this.setNurseProtectArea(nurseProtectArea);
+        this.setNurseHeigt(nurseHeigt);
+        this.setNurseWeight(nurseWeight);
+        this.setNurseBloodType(nurseBloodType);
+        this.setNurseNation(nurseNation);
+        this.setNurseIdentity(nurseIdentity);
+        this.setNurseConstellation(nurseConstellation);
+        this.setNurseAnimal(nurseAnimal);
+        this.setNurseDescription(nurseDescription);
+        this.setNursePhone(nursePhone);
+    }
+
 
     public String getNurseName() {
         return nurseName;
     }
 
     public void setNurseName(String nurseName) {
-        nurseName = nurseName;
+        this.nurseName = nurseName;
+    }
+
+    public int getNurseId() {
+        return nurseId;
+    }
+
+    public void setNurseId(int nurseId) {
+        this.nurseId = nurseId;
+    }
+
+    public int getNurseSex() {
+        return nurseSex;
+    }
+
+    public void setNurseSex(int nurseSex) {
+        this.nurseSex = nurseSex;
     }
 
     public int getNurseAge() {
@@ -56,55 +78,7 @@ public class Nurse {
     }
 
     public void setNurseAge(int nurseAge) {
-        nurseAge = nurseAge;
-    }
-
-    public String getNurseSex() {
-        return nurseSex;
-    }
-
-    public void setNurseSex(String nurseSex) {
-        nurseSex = nurseSex;
-    }
-
-    public String getNurseArea() {
-        return nurseArea;
-    }
-
-    public void setNurseArea(String nurseArea) {
-        nurseArea = nurseArea;
-    }
-
-    public int getNurseEvaluate() {
-        return nurseEvaluate;
-    }
-
-    public void setNurseEvaluate(int nurseEvaluate) {
-        nurseEvaluate = nurseEvaluate;
-    }
-
-    public int getNursePrice() {
-        return nursePrice;
-    }
-
-    public void setNursePrice(int nursePrice) {
-        nursePrice = nursePrice;
-    }
-
-    public String[] getNurseProtectArea() {
-        return nurseProtectArea;
-    }
-
-    public void setNurseProtectArea(String[] nurseProtectArea) {
-        nurseProtectArea = nurseProtectArea;
-    }
-
-    public int getNurseId() {
-        return NurseId;
-    }
-
-    public void setNurseId(int nurseId) {
-        nurseId = nurseId;
+        this.nurseAge = nurseAge;
     }
 
     public int getNurseWorkAge() {
@@ -112,7 +86,39 @@ public class Nurse {
     }
 
     public void setNurseWorkAge(int nurseWorkAge) {
-        nurseWorkAge = nurseWorkAge;
+        this.nurseWorkAge = nurseWorkAge;
+    }
+
+    public String getNurseArea() {
+        return nurseArea;
+    }
+
+    public void setNurseArea(String nurseArea) {
+        this.nurseArea = nurseArea;
+    }
+
+    public int getNurseEvaluate() {
+        return nurseEvaluate;
+    }
+
+    public void setNurseEvaluate(int nurseEvaluate) {
+        this.nurseEvaluate = nurseEvaluate;
+    }
+
+    public int getNursePrice() {
+        return nursePrice;
+    }
+
+    public void setNursePrice(int nursePrice) {
+        this.nursePrice = nursePrice;
+    }
+
+    public String[] getNurseProtectArea() {
+        return nurseProtectArea;
+    }
+
+    public void setNurseProtectArea(String[] nurseProtectArea) {
+        this.nurseProtectArea = nurseProtectArea;
     }
 
     public int getNurseHeigt() {
@@ -120,7 +126,7 @@ public class Nurse {
     }
 
     public void setNurseHeigt(int nurseHeigt) {
-        nurseHeigt = nurseHeigt;
+        this.nurseHeigt = nurseHeigt;
     }
 
     public int getNurseWeight() {
@@ -128,7 +134,7 @@ public class Nurse {
     }
 
     public void setNurseWeight(int nurseWeight) {
-        nurseWeight = nurseWeight;
+        this.nurseWeight = nurseWeight;
     }
 
     public String getNurseBloodType() {
@@ -136,7 +142,7 @@ public class Nurse {
     }
 
     public void setNurseBloodType(String nurseBloodType) {
-        nurseBloodType = nurseBloodType;
+        this.nurseBloodType = nurseBloodType;
     }
 
     public String getNurseNation() {
@@ -144,7 +150,7 @@ public class Nurse {
     }
 
     public void setNurseNation(String nurseNation) {
-        nurseNation = nurseNation;
+        this.nurseNation = nurseNation;
     }
 
     public String getNurseIdentity() {
@@ -152,7 +158,7 @@ public class Nurse {
     }
 
     public void setNurseIdentity(String nurseIdentity) {
-        nurseIdentity = nurseIdentity;
+        this.nurseIdentity = nurseIdentity;
     }
 
     public String getNurseConstellation() {
@@ -160,7 +166,7 @@ public class Nurse {
     }
 
     public void setNurseConstellation(String nurseConstellation) {
-        nurseConstellation = nurseConstellation;
+        this.nurseConstellation = nurseConstellation;
     }
 
     public String getNurseAnimal() {
@@ -168,7 +174,7 @@ public class Nurse {
     }
 
     public void setNurseAnimal(String nurseAnimal) {
-        nurseAnimal = nurseAnimal;
+        this.nurseAnimal = nurseAnimal;
     }
 
     public String getNurseDescription() {
@@ -176,6 +182,14 @@ public class Nurse {
     }
 
     public void setNurseDescription(String nurseDescription) {
-        nurseDescription = nurseDescription;
+        this.nurseDescription = nurseDescription;
+    }
+
+    public String getNursePhone() {
+        return nursePhone;
+    }
+
+    public void setNursePhone(String nursePhone) {
+        this.nursePhone = nursePhone;
     }
 }

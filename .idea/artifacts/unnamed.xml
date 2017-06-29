@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact name="unnamed">
+    <output-path>F:/apache-tomcat-7.0.75/webapps</output-path>
+    <root id="root" />
+  </artifact>
+</component>

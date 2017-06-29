@@ -1,6 +1,8 @@
 package com.company;
 
 import com.company.DAO.DBconnect;
+import com.company.Service.GeneralService;
+import com.sun.tools.javac.jvm.Gen;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +18,7 @@ public class Main {
 //		    int i = 0;
 //		    String sql = "insert into students (Name,Sex,Age) values(?,?,?)";
 
-        String sql = "select * from user;";
+        String sql = "select * from app_user;";
         PreparedStatement pstmt;
         try {
             pstmt = (PreparedStatement) conn.prepareStatement(sql);
@@ -38,6 +40,11 @@ public class Main {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        GeneralService.getNurse(1);
+        GeneralService.getPatient(2);
+        GeneralService.getUser("15515515515");
+
 
     }
 }
