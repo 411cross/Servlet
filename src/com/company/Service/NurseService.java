@@ -118,5 +118,17 @@ public class NurseService {
             return NurseList;
         }
 
+        /*管理员增加护工
+        *
+        * */
+
+        static  public void addNurse(Nurse nurse){
+            Connection conn = DBconnect.getConn();
+
+            PreparedStatement prestate;
+
+            String sql = "insert into";
+
+        }
 
     }
