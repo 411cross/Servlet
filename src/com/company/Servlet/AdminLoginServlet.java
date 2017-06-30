@@ -1,6 +1,8 @@
 package com.company.Servlet;
 
+import com.company.Service.GeneralService;
 import com.company.Service.LoginService;
+import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,14 +17,22 @@ public class AdminLoginServlet extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doPost(req, resp);
-        String id = (String) req.getParameter("id");
-        String password =(String) req.getParameter("password");
+
+        JSONObject jsonObject = GeneralService.toJsonObject(req);
+        int id = jsonObject.getInt("id");
+        String password = jsonObject.getString("password");
+
+        StringBuffer stringBuffer = new StringBuffer();
 
         if(LoginService.administratorLogin(id,password)){
-            System.out.println("{\"StatueCode\":\"200\",\"Message\":\"成功\"}");
-        }else{
-
+            resp.setStatus(200);
+            stringBuffer.append("{\"statueCode\":\"200\",\"message\":\"成功\"}");
+        } else {
+            resp.setStatus(100);
+            stringBuffer.append("{\"statueCode\":\"100\",\"message\":\"失败\"}");
         }
+
+        resp.getOutputStream().write(stringBuffer.toString().getBytes("GBK"));
 
     }
 }

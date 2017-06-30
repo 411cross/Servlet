@@ -2,18 +2,22 @@ package com.company.Service;
 
 import com.company.DAO.DBconnect;
 import com.company.Entity.Administrator;
+import com.company.Entity.Order;
 import com.company.Entity.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by Administrator on 2017/6/29.
  */
 public class LoginService {
-    static public boolean userLogin(String id, String password){
-        boolean flag = false;
+    static public String userLogin(String id, String password){
+
+        String flag = "";
 
         Connection conn = DBconnect.getConn();
 
@@ -29,11 +33,8 @@ public class LoginService {
             ResultSet result = prestate.executeQuery();
 
             while(result.next()){
-//                String username = result.getString(3);
 
-                System.out.println("登录成功！");
-
-                flag = true;
+                flag = result.getString("id");
             }
 
         }catch(Exception ex){
@@ -44,7 +45,7 @@ public class LoginService {
     }
 
 
-    static public boolean administratorLogin(String id ,String password){
+    static public boolean administratorLogin(int id ,String password){
         boolean flag = false;
         Connection conn = DBconnect.getConn();
 
@@ -55,7 +56,7 @@ public class LoginService {
         try{
             prestate = conn.prepareStatement(sql);
 
-            prestate.setString(1, id);
+            prestate.setInt(1, id);
             prestate.setString(2, password);
 
             ResultSet result = prestate.executeQuery();
@@ -71,8 +72,6 @@ public class LoginService {
         }
 
         return flag;
-
-
 
     }
 

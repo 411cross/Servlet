@@ -6,6 +6,7 @@ package com.company.Servlet;
 import com.company.Entity.User;
 import com.company.Service.GeneralService;
 import com.company.Service.LoginService;
+import com.google.gson.Gson;
 import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
@@ -22,19 +23,22 @@ public class UserLoginServlet extends HttpServlet{
         JSONObject jsonObject = GeneralService.toJsonObject(req);
         String id = jsonObject.getString("id");
         String password = jsonObject.getString("password");
+        User user;
+        Gson gson = new Gson();
 
         StringBuffer stringBuffer = new StringBuffer();
 
-        if(LoginService.userLogin(id, password)){
+        if(!LoginService.userLogin(id, password).equals("")){
             resp.setStatus(200);
-            stringBuffer.append("{\"statueCode\":\"200\",\"message\":\"成功\"}");    //生成User的JSON 格式
+            user = GeneralService.getUser(LoginService.userLogin(id, password));
+            String jsonString = gson.toJson(user);
+            String response = "{\"statueCode\":\"200\",\"data\":" + jsonString + "}";
+            resp.getOutputStream().write(response.getBytes("GBK"));
         }else{
             resp.setStatus(100);
             stringBuffer.append("{\"statueCode\":\"100\",\"message\":\"失败\"}");
+            resp.getOutputStream().write(stringBuffer.toString().getBytes("GBK"));
         }
-
-
-        resp.getOutputStream().write(stringBuffer.toString().getBytes("GBK"));
 
     }
 
