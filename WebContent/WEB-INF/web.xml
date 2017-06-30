@@ -49,6 +49,14 @@
         <servlet-name>getPatient</servlet-name>
         <servlet-class>com.company.Servlet.GetPatientServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>addNurseServlet</servlet-name>
+        <servlet-class>com.company.Servlet.AddNurseServlet</servlet-class>
+    </servlet>
+
+
+
+
 
     <servlet>
         <servlet-name>searchNurse</servlet-name>
@@ -113,6 +121,11 @@
     <servlet-mapping>
         <servlet-name>deleteNurse</servlet-name>
         <url-pattern>/deletenurse</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>addNurseServlet</servlet-name>
+        <url-pattern>/addnurseservlet</url-pattern>
     </servlet-mapping>
 
 </web-app>

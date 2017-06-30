@@ -172,6 +172,59 @@ public class NurseService {
 
     }
 
+    /*管理员增加护工
+        *
+        * */
+
+    static  public boolean addNurse(Nurse nurse) throws SQLException {
+        Connection conn = DBconnect.getConn();
+
+
+        PreparedStatement prestate;
+
+        String sql = "insert into app_nurse(id,name,sex,age,work_age,price,evaluation,phone,height,weight,blood_type,nation,identity,constellation,animal,description,area) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql1 ="insert into app_range(n_id,type) values(?,?)";
+        prestate = (PreparedStatement) conn.prepareStatement(sql);
+
+        prestate.setInt(1, nurse.getNurseId());
+        prestate.setString(2,nurse.getNurseName());
+        prestate.setInt(3,nurse.getNurseSex());
+        prestate.setInt(4,nurse.getNurseAge());
+        prestate.setInt(5,nurse.getNurseWorkAge());
+        prestate.setInt(6,nurse.getNursePrice());
+        prestate.setInt(7,nurse.getNurseEvaluate());
+        prestate.setString(8,nurse.getNursePhone());
+        prestate.setInt(9,nurse.getNurseHeigt());
+        prestate.setInt(10,nurse.getNurseWeight());
+        prestate.setString(11,nurse.getNurseBloodType());
+        prestate.setString(12,nurse.getNurseNation());
+        prestate.setString(13,nurse.getNurseIdentity());
+        prestate.setString(14,nurse.getNurseConstellation());
+        prestate.setString(15,nurse.getNurseAnimal());
+        prestate.setString(16,nurse.getNurseDescription());
+        prestate.setString(17,nurse.getNurseArea());
+
+
+
+        int i =prestate.executeUpdate();
+        int j =0;
+        prestate = (PreparedStatement) conn.prepareStatement(sql1);
+        for(int k=0;k<nurse.getNurseProtectArea().size();k++){
+            prestate.setInt(1, nurse.getNurseId());
+            prestate.setInt(2, nurse.getNurseProtectArea().get(k));
+            j =j+prestate.executeUpdate();
+        }
+
+
+
+        if(i==1&&j==nurse.getNurseProtectArea().size()){
+            return true;
+        }
+        else return  false;
+
+
+    }
+
     static public ArrayList<Nurse> getNurse(String name) throws SQLException {
 
         ArrayList<Nurse> nurseList = new ArrayList<>();
@@ -238,6 +291,6 @@ public class NurseService {
 
         return flag;
 
-    }
+        }
 
-}
+    }
