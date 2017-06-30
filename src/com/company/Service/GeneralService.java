@@ -5,18 +5,23 @@ import com.company.Entity.Nurse;
 import com.company.Entity.Order;
 import com.company.Entity.Patient;
 import com.company.Entity.User;
+import net.sf.json.JSONObject;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 
 /**
  * Created by derrickJ on 2017/6/29.
  */
 public class GeneralService {
 
-    static public User getUser(String userID){
+    static public User getUser(String userID) {
 
         User user = new User();
 
@@ -25,14 +30,14 @@ public class GeneralService {
         PreparedStatement prestate;
 
         String sql = "select * from app_user where id =?";
-        try{
+        try {
             prestate = conn.prepareStatement(sql);
 
             prestate.setString(1, userID);
 
             ResultSet result = prestate.executeQuery();
 
-            while(result.next()){
+            while (result.next()) {
 //
                 String id = result.getString("id");
                 String password = result.getString("password");
@@ -48,14 +53,14 @@ public class GeneralService {
 
             }
 
-        }catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
 
         return user;
     }
 
-    static public Patient getPatient(int patientID){
+    static public Patient getPatient(int patientID) {
 
         Patient patient = new Patient();
 
@@ -64,14 +69,14 @@ public class GeneralService {
         PreparedStatement prestate;
 
         String sql = "select * from app_patient where id =?";
-        try{
+        try {
             prestate = conn.prepareStatement(sql);
 
             prestate.setInt(1, patientID);
 
             ResultSet result = prestate.executeQuery();
 
-            while(result.next()){
+            while (result.next()) {
 //
                 int id = result.getInt("id");
                 String bedNumber = result.getString("bed_number");
@@ -93,14 +98,14 @@ public class GeneralService {
 
             }
 
-        }catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
 
         return patient;
     }
 
-    static public Nurse getNurse(int nurseID){
+    static public Nurse getNurse(int nurseID) {
 
         Nurse nurse = new Nurse();
 
@@ -109,14 +114,14 @@ public class GeneralService {
         PreparedStatement prestate;
 
         String sql = "select * from app_nurse where id =?";
-        try{
+        try {
             prestate = conn.prepareStatement(sql);
 
             prestate.setInt(1, nurseID);
 
             ResultSet result = prestate.executeQuery();
 
-            while(result.next()){
+            while (result.next()) {
 //
                 int id = result.getInt("id");
                 String name = result.getString("name");
@@ -158,11 +163,25 @@ public class GeneralService {
 
             }
 
-        }catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
 
         return nurse;
     }
 
+    public static JSONObject toJsonObject(HttpServletRequest request) throws IOException, UnsupportedEncodingException {
+
+        // 读取请求内容
+        BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream(),"utf-8"));
+        String line = null;
+        StringBuilder sb = new StringBuilder();
+        while ((line = br.readLine()) != null) {
+            sb.append(line);
+        }
+        //将json字符串转换为json对象
+        JSONObject jsonObject=JSONObject.fromObject(sb.toString());
+        return jsonObject;
+
+    }
 }
