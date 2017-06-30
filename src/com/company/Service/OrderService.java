@@ -20,7 +20,6 @@ public class OrderService {
 
     static public ArrayList<Order> getOrder(String userId, int orderSituation) throws SQLException {
 
-        boolean flag = false;
         ArrayList<Order> orderList = new ArrayList<>();
         Order tempOrder = new Order();
         User tempUser;
@@ -68,12 +67,52 @@ public class OrderService {
             tempOrder.setPatient(tempPatient);
 
             orderList.add(tempOrder);
-
-            System.out.println("ORDER ID IS:" + tempOrder.getId());
-
         }
 
         return orderList;
+    }
+
+    static public boolean createOrder(Order order) throws SQLException{
+
+        boolean flag = false;
+
+        int id = order.getId();
+        int totalPrice = order.getTotalPrice();
+        String createTime = order.getCreateTime();
+        String serviceTime = order.getServiceTime();
+        int type = order.getType();
+        int situation = order.getSituation();
+        int choseNurse = order.getChoseNurse();
+        int nurseID = order.getNurse().getNurseId();
+        int patientID = order.getPatient().getId();
+        String userID = order.getUser().getId();
+
+
+        Connection conn = DBconnect.getConn();
+        PreparedStatement prestate;
+        String sql = "insert into app_order (id, total_price, create_time, service_time, " +
+                "type, situation, chose_nurse, n_id, p_id, u_id) " +
+                "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        prestate = conn.prepareStatement(sql);
+        prestate.setInt(1, id);
+        prestate.setInt(2, totalPrice);
+        prestate.setString(3, createTime);
+        prestate.setString(4, serviceTime);
+        prestate.setInt(5, type);
+        prestate.setInt(6, situation);
+        prestate.setInt(7, choseNurse);
+        prestate.setInt(8, nurseID);
+        prestate.setInt(9, patientID);
+        prestate.setString(10, userID);
+
+        int result = prestate.executeUpdate();
+
+        while(result != 0){
+            flag = true;
+        }
+
+        return flag;
+
     }
 
 }

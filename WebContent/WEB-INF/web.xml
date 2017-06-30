@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
-  <display-name>RenAiHospitalServlet</display-name>
-  <!--<welcome-file-list>-->
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         id="WebApp_ID" version="3.0">
+    <display-name>RenAiHospitalServlet</display-name>
+    <!--<welcome-file-list>-->
     <!--<welcome-file>index.html</welcome-file>-->
-  <!--</welcome-file-list>-->
-  <servlet>
-    <servlet-name>userLogin</servlet-name>
-    <servlet-class>com.company.Servlet.UserLoginServlet</servlet-class>
-  </servlet>
-  
-  <servlet>
-  	<servlet-name>adminLogin</servlet-name>
-  	<servlet-class>com.company.Servlet.AdminLoginServlet</servlet-class>
-  </servlet>
+    <!--</welcome-file-list>-->
+    <servlet>
+        <servlet-name>userLogin</servlet-name>
+        <servlet-class>com.company.Servlet.UserLoginServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>adminLogin</servlet-name>
+        <servlet-class>com.company.Servlet.AdminLoginServlet</servlet-class>
+    </servlet>
+
     <servlet>
         <servlet-name>nurseFilter</servlet-name>
         <servlet-class>com.company.Servlet.FilterNurseServlet</servlet-class>
     </servlet>
+
     <servlet>
         <servlet-name>register</servlet-name>
         <servlet-class>com.company.Servlet.RegisterServlet</servlet-class>
     </servlet>
+
     <servlet>
         <servlet-name>modifyUserInformation</servlet-name>
         <servlet-class>com.company.Servlet.ModifyUserServlet</servlet-class>
@@ -30,26 +35,42 @@
         <servlet-class>com.company.Servlet.AddFamilyRelationServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>createOrder</servlet-name>
+        <servlet-class>com.company.Servlet.CreateOrderServlet</servlet-class>
+    </servlet>
 
-  <servlet-mapping>
-    <servlet-name>userLogin</servlet-name>
-    <url-pattern>/userlogin</url-pattern>
-  </servlet-mapping>
-  
-  <servlet-mapping>
-  	<servlet-name>nurseFilter</servlet-name>
-  	<url-pattern>/nursefilter</url-pattern>
-  </servlet-mapping>
+    <servlet>
+        <servlet-name>getOrder</servlet-name>
+        <servlet-class>com.company.Servlet.GetOrderServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>getPatient</servlet-name>
+        <servlet-class>com.company.Servlet.GetPatientServlet</servlet-class>
+    </servlet>
+
+
+    <servlet-mapping>
+        <servlet-name>userLogin</servlet-name>
+        <url-pattern>/userlogin</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>nurseFilter</servlet-name>
+        <url-pattern>/nursefilter</url-pattern>
+    </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>adminLogin</servlet-name>
         <url-pattern>/adminlogin</url-pattern>
-    </servlet-mapping>register
+    </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
     </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>modifyUserInformation</servlet-name>
         <url-pattern>/modifyuserinformation</url-pattern>
@@ -58,4 +79,20 @@
         <servlet-name>addRelation</servlet-name>
         <url-pattern>/addrelation</url-pattern>
     </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>createOrder</servlet-name>
+        <url-pattern>/createorder</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>getOrder</servlet-name>
+        <url-pattern>/getorder</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>getPatient</servlet-name>
+        <url-pattern>/getpatient</url-pattern>
+    </servlet-mapping>
+
 </web-app>
