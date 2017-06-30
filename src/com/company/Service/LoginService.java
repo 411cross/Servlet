@@ -55,7 +55,6 @@ public class LoginService {
 
         try{
             prestate = conn.prepareStatement(sql);
-
             prestate.setInt(1, id);
             prestate.setString(2, password);
 

@@ -1,5 +1,7 @@
 package com.company.Entity;
 
+import java.util.ArrayList;
+
 /**
  * Created by Administrator on 2017/6/29.
  */
@@ -12,7 +14,7 @@ public class Nurse {
     private String nurseArea; //地区
     private int nurseEvaluate; //评分
     private int nursePrice; //个人价格
-    private String[] nurseProtectArea; //护理范围
+    private ArrayList<Integer> nurseProtectArea; //护理范围
     private int nurseHeigt; //身高
     private int nurseWeight; //体重
     private String nurseBloodType; //血型
@@ -27,7 +29,7 @@ public class Nurse {
 
     }
 
-    public Nurse(String nurseName, int nurseId, int nurseSex, int nurseAge, int nurseWorkAge, String nurseArea, int nurseEvaluate, int nursePrice, String[] nurseProtectArea, int nurseHeigt, int nurseWeight, String nurseBloodType, String nurseNation, String nurseIdentity, String nurseConstellation, String nurseAnimal, String nurseDescription, String nursePhone) {
+    public Nurse(String nurseName, int nurseId, int nurseSex, int nurseAge, int nurseWorkAge, String nurseArea, int nurseEvaluate, int nursePrice, ArrayList<Integer> nurseProtectArea, int nurseHeigt, int nurseWeight, String nurseBloodType, String nurseNation, String nurseIdentity, String nurseConstellation, String nurseAnimal, String nurseDescription, String nursePhone) {
         this.setNurseName(nurseName);
         this.setNurseId(nurseId);
         this.setNurseSex(nurseSex);
@@ -113,11 +115,11 @@ public class Nurse {
         this.nursePrice = nursePrice;
     }
 
-    public String[] getNurseProtectArea() {
+    public ArrayList<Integer> getNurseProtectArea() {
         return nurseProtectArea;
     }
 
-    public void setNurseProtectArea(String[] nurseProtectArea) {
+    public void setNurseProtectArea(ArrayList<Integer> nurseProtectArea) {
         this.nurseProtectArea = nurseProtectArea;
     }
 
