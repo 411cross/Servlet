@@ -9,6 +9,19 @@ public class User {
     private String name;
     private String avatar;
 
+    public User(){
+
+    }
+
+    public User(String id, String password, String name) {
+        super();
+
+        this.id = id;
+        this.password = password;
+        this.name = name;
+
+    }
+
     public String getId() {
         return id;
     }
@@ -41,12 +54,5 @@ public class User {
         this.avatar = avatar;
     }
 
-    public User(String id, String password, String name){
-        super();
 
-        this.id=id;
-        this.password=password;
-        this.name=name;
-
-    }
 }
