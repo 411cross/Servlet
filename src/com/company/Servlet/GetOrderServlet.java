@@ -26,7 +26,7 @@ public class GetOrderServlet extends HttpServlet {
 //        User user = new User(id,password,name);
 //
 //        if(LoginService.userLogin(user)){
-//            System.out.println("{\"StatueCode\":\"200\",\"Message\":\"成功\"}");
+//            System.out.println("{\"statueCode\":\"200\",\"message\":\"成功\"}");
 //
 //        }else{
 //

@@ -1,7 +1,12 @@
 package com.company.Servlet;
 
 import com.company.Entity.Nurse;
+import com.company.Service.GeneralService;
 import com.company.Service.NurseService;
+import com.company.Service.UserService;
+import com.google.gson.Gson;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,33 +19,31 @@ import java.util.ArrayList;
 /**
  * Created by Administrator on 2017/6/29.
  */
-public class FilterNurseServlet extends HttpServlet{
+public class FilterNurseServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         super.doPost(req, resp);
+
+        Gson gson = new Gson();
         ArrayList<Nurse> NurseList = new ArrayList<>();
-        int filter = Integer.parseInt(req.getParameter("filter"));
-        int position = Integer.parseInt(req.getParameter("position"));
+
+        JSONObject jsonObject = GeneralService.toJsonObject(req);
+        int filter = jsonObject.getInt("filter");
+        int position = jsonObject.getInt("position");
+
         try {
-            NurseList= NurseService.filterNurse(filter,position);
+            NurseList = NurseService.filterNurse(filter, position);
+            resp.setStatus(200);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-//  //先转JSON 格式
-//
-//        StringBuffer stringBuffer = new StringBuffer();
-//
-//        if(new LoginService().login(user)){
-//
-//            stringBuffer.append("{'message':[{'code':'200','str':'登录成功'}]}");
-//        }else{
-//            stringBuffer.append("{'message':[{'code':'100','str':'登录失败'}]}");
-//
-//        }
-//
-//        response.getOutputStream().write(stringBuffer.toString().getBytes("GBK"));
+        String jsonString = gson.toJson(NurseList);
+        String response = "{\"statueCode\":\"200\"," + jsonString;
 
+        resp.getOutputStream().write(response.getBytes("GBK"));
 
     }
+
 }

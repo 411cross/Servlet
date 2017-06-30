@@ -26,13 +26,14 @@ public class UserLoginServlet extends HttpServlet{
         StringBuffer stringBuffer = new StringBuffer();
 
         if(LoginService.userLogin(id, password)){
-
-            stringBuffer.append("{'message':[{'code':'200','str':'登录成功'}]}");    //生成User的JSON 格式
-
+            resp.setStatus(200);
+            stringBuffer.append("{\"statueCode\":\"200\",\"message\":\"成功\"}");    //生成User的JSON 格式
         }else{
-            stringBuffer.append("{'message':[{'code':'100','str':'登录失败'}]}");
-
+            resp.setStatus(100);
+            stringBuffer.append("{\"statueCode\":\"100\",\"message\":\"失败\"}");
         }
+
+
         resp.getOutputStream().write(stringBuffer.toString().getBytes("GBK"));
 
     }
