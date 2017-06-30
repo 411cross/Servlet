@@ -1,10 +1,8 @@
 package com.company.Servlet;
 
 import com.company.Entity.Nurse;
-import com.company.Entity.Order;
 import com.company.Service.GeneralService;
 import com.company.Service.NurseService;
-import com.company.Service.OrderService;
 import com.google.gson.Gson;
 import net.sf.json.JSONObject;
 
@@ -19,7 +17,7 @@ import java.util.ArrayList;
 /**
  * Created by derrickJ on 2017/6/30.
  */
-public class SearchNurseServlet extends HttpServlet {
+public class GetNurseServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -29,11 +27,8 @@ public class SearchNurseServlet extends HttpServlet {
         Gson gson = new Gson();
         ArrayList<Nurse> nurseList = new ArrayList<>();
 
-        JSONObject jsonObject = GeneralService.toJsonObject(req);
-        String name = jsonObject.getString("name");
-
         try {
-            nurseList = NurseService.searchNurse(name);
+            nurseList = NurseService.getNurseList();
             resp.setStatus(200);
         } catch (SQLException e) {
             e.printStackTrace();

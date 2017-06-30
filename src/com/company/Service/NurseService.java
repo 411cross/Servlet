@@ -225,7 +225,7 @@ public class NurseService {
 
     }
 
-    static public ArrayList<Nurse> getNurse(String name) throws SQLException {
+    static public ArrayList<Nurse> searchNurse(String name) throws SQLException {
 
         ArrayList<Nurse> nurseList = new ArrayList<>();
         ArrayList<Integer> nurseAreaList = new ArrayList<>();
@@ -260,10 +260,58 @@ public class NurseService {
             String nurseArea = result.getString("area");
             nurseAreaList = NurseService.getNurseArea(nurseID);
 
-            tempNurse = new Nurse(nurseName, nurseID, nurseSex, nurseAge, nurseWorkAge,
+            tempNurse = new Nurse(nurseName, nurseSex, nurseAge, nurseWorkAge,
                     nurseArea, nurseEvaluation, nursePrice, nurseAreaList, nurseHeight,
                     nurseWeight, nurseBloodType, nurseNation, nurseIdentity,
                     nurseConstellation, nurseAnimal, nurseDescription, nursePhone);
+            tempNurse.setNurseId(nurseID);
+
+        }
+
+
+        return nurseList;
+
+    }
+
+    static public ArrayList<Nurse> getNurseList() throws SQLException {
+
+        ArrayList<Nurse> nurseList = new ArrayList<>();
+        ArrayList<Integer> nurseAreaList = new ArrayList<>();
+
+        Nurse tempNurse;
+        Connection conn = DBconnect.getConn();
+        PreparedStatement prestate;
+
+        String sql = "select * from app_nurse";
+        prestate = conn.prepareStatement(sql);
+        ResultSet result = prestate.executeQuery();
+
+        while (result.next()) {
+
+            int nurseID = result.getInt("id");
+            String nurseName = result.getString("name");
+            int nurseSex = result.getInt("sex");
+            int nurseAge = result.getInt("age");
+            int nurseWorkAge = result.getInt("work_age");
+            int nursePrice = result.getInt("price");
+            int nurseEvaluation = result.getInt("evaluation");
+            String nursePhone = result.getString("phone");
+            int nurseHeight = result.getInt("height");
+            int nurseWeight = result.getInt("weight");
+            String nurseBloodType = result.getString("blood_type");
+            String nurseNation = result.getString("nation");
+            String nurseIdentity = result.getString("identity");
+            String nurseConstellation = result.getString("constellation");
+            String nurseAnimal = result.getString("animal");
+            String nurseDescription = result.getString("description");
+            String nurseArea = result.getString("area");
+            nurseAreaList = NurseService.getNurseArea(nurseID);
+
+            tempNurse = new Nurse(nurseName, nurseSex, nurseAge, nurseWorkAge,
+                    nurseArea, nurseEvaluation, nursePrice, nurseAreaList, nurseHeight,
+                    nurseWeight, nurseBloodType, nurseNation, nurseIdentity,
+                    nurseConstellation, nurseAnimal, nurseDescription, nursePhone);
+            tempNurse.setNurseId(nurseID);
 
             nurseList.add(tempNurse);
 

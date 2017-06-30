@@ -25,13 +25,12 @@ public class Nurse {
     private String nurseDescription; //个人介绍
     private String nursePhone;//电话
 
-    public Nurse(){
+    public Nurse() {
 
     }
 
-    public Nurse(String nurseName, int nurseId, int nurseSex, int nurseAge, int nurseWorkAge, String nurseArea, int nurseEvaluate, int nursePrice, ArrayList<Integer> nurseProtectArea, int nurseHeigt, int nurseWeight, String nurseBloodType, String nurseNation, String nurseIdentity, String nurseConstellation, String nurseAnimal, String nurseDescription, String nursePhone) {
+    public Nurse(String nurseName, int nurseSex, int nurseAge, int nurseWorkAge, String nurseArea, int nurseEvaluate, int nursePrice, ArrayList<Integer> nurseProtectArea, int nurseHeigt, int nurseWeight, String nurseBloodType, String nurseNation, String nurseIdentity, String nurseConstellation, String nurseAnimal, String nurseDescription, String nursePhone) {
         this.setNurseName(nurseName);
-        this.setNurseId(nurseId);
         this.setNurseSex(nurseSex);
         this.setNurseAge(nurseAge);
         this.setNurseWorkAge(nurseWorkAge);

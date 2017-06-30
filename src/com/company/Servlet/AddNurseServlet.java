@@ -44,7 +44,8 @@ public class AddNurseServlet extends HttpServlet{
         for(int i=0;i<protextArea.size();i++){
             protextAreaList.add(protextArea.getInt(i));
         }
-        Nurse nurse = new Nurse(name,id,sex,age,workAge,area,evalution,price,protextAreaList,height,weight,bloodType,nation,identity,constellation,animal,description,phone);
+        Nurse nurse = new Nurse(name,sex,age,workAge,area,evalution,price,protextAreaList,height,weight,bloodType,nation,identity,constellation,animal,description,phone);
+        nurse.setNurseId(id);
         StringBuffer stringBuffer = new StringBuffer();
 
         try {
