@@ -1,12 +1,14 @@
 package com.company.Service;
 
 import com.company.DAO.DBconnect;
+import com.company.Entity.Patient;
 import com.company.Entity.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * Created by Administrator on 2017/6/30.
@@ -17,7 +19,7 @@ public class UserService {
     * 登录
     * */
 
-    static public boolean register(String id ,String name,String pass) throws SQLException {
+    static public boolean register(String id, String name, String pass) throws SQLException {
         boolean flag = false;
         Connection conn = DBconnect.getConn();
 
@@ -30,15 +32,15 @@ public class UserService {
         prestate.setString(3, name);
 
         int i = prestate.executeUpdate();   //返回更新数目的条数
-        if(i == 1) flag = true;
-        else flag =false;
+        if (i == 1) flag = true;
+        else flag = false;
 
         return flag;
     }
 
     /*用户修改个人信息*/
 
-    static  public boolean modifyUserInfomation(User user) throws SQLException {
+    static public boolean modifyUserInfomation(User user) throws SQLException {
 
 
         boolean flag = false;
@@ -54,11 +56,39 @@ public class UserService {
         prestate.setString(4, user.getId());
 
         int i = prestate.executeUpdate();   //返回更新数目的条数
-        if(i == 1) flag = true;
-        else flag =false;
+        if (i == 1) flag = true;
+        else flag = false;
 
         return flag;
 
+    }
+
+    static public ArrayList<Patient> getRelatedPatient(String id) throws SQLException {
+
+        Patient tempPatient = null;
+        ArrayList<Patient> patientList = new ArrayList<>();
+
+        Connection conn = DBconnect.getConn();
+
+        PreparedStatement prestate;
+
+        String sql = "select * from app_relation where u_id =?";
+
+        prestate = conn.prepareStatement(sql);
+
+        prestate.setString(1, id);
+
+        ResultSet result = prestate.executeQuery();
+
+        while (result.next()) {
+
+            int patientID = result.getInt("p_id");
+            tempPatient = GeneralService.getPatient(patientID);
+            patientList.add(tempPatient);
+
+        }
+
+        return patientList;
 
     }
 
