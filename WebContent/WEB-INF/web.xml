@@ -50,10 +50,13 @@
         <servlet-class>com.company.Servlet.GetPatientServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>addNurseServlet</servlet-name>
+        <servlet-name>addNurse</servlet-name>
         <servlet-class>com.company.Servlet.AddNurseServlet</servlet-class>
     </servlet>
-
+    <servlet>
+        <servlet-name>modifyNurse</servlet-name>
+        <servlet-class>com.company.Servlet.ModifyUserServlet</servlet-class>
+    </servlet>
 
 
 
@@ -124,8 +127,13 @@
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>addNurseServlet</servlet-name>
-        <url-pattern>/addnurseservlet</url-pattern>
+        <servlet-name>addNurse</servlet-name>
+        <url-pattern>/addnurse</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>modifyNurse</servlet-name>
+        <url-pattern>/modifynurse</url-pattern>
     </servlet-mapping>
 
 </web-app>

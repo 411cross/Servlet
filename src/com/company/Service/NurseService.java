@@ -182,42 +182,113 @@ public class NurseService {
 
         PreparedStatement prestate;
 
-        String sql = "insert into app_nurse(id,name,sex,age,work_age,price,evaluation,phone,height,weight,blood_type,nation,identity,constellation,animal,description,area) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        String sql1 ="insert into app_range(n_id,type) values(?,?)";
+            String sql = "insert into app_nurse(name,sex,age,work_age,price,evaluation,phone,height,weight,blood_type,nation,identity,constellation,animal,description,area) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String sql1 = "select max(id) FROM app_nurse";
+            String sql2 ="insert into app_range(n_id,type) values(?,?) ";
+                    prestate = (PreparedStatement) conn.prepareStatement(sql);
+
+
+            prestate.setString(1,nurse.getNurseName());
+            prestate.setInt(2,nurse.getNurseSex());
+            prestate.setInt(3,nurse.getNurseAge());
+            prestate.setInt(4,nurse.getNurseWorkAge());
+            prestate.setInt(5,nurse.getNursePrice());
+            prestate.setInt(6,nurse.getNurseEvaluate());
+            prestate.setString(7,nurse.getNursePhone());
+            prestate.setInt(8,nurse.getNurseHeigt());
+            prestate.setInt(9,nurse.getNurseWeight());
+            prestate.setString(10,nurse.getNurseBloodType());
+            prestate.setString(11,nurse.getNurseNation());
+            prestate.setString(12,nurse.getNurseIdentity());
+            prestate.setString(13,nurse.getNurseConstellation());
+            prestate.setString(14,nurse.getNurseAnimal());
+            prestate.setString(15,nurse.getNurseDescription());
+            prestate.setString(16,nurse.getNurseArea());
+
+
+
+            int i =prestate.executeUpdate();
+            int j =0;
+            int id;
+
+            prestate = (PreparedStatement) conn.prepareStatement(sql1);
+            ResultSet  result =  prestate.executeQuery();
+
+            id = result.getInt(1);
+
+
+
+            prestate = (PreparedStatement) conn.prepareStatement(sql2);
+
+            for(int k=0;k<nurse.getNurseProtectArea().size();k++){
+                prestate.setInt(1, id);
+                prestate.setInt(2, nurse.getNurseProtectArea().get(k));
+                 j =j+prestate.executeUpdate();
+            }
+
+
+
+            if(i==1&&j==nurse.getNurseProtectArea().size()){
+                return true;
+            }
+            else return  false;
+
+
+        }
+
+        /*管理员修改护工信息
+        *
+        * */
+
+    static  public boolean modifyNurse(Nurse nurse) throws SQLException {
+        Connection conn = DBconnect.getConn();
+
+
+        PreparedStatement prestate;
+
+        String sql = "update app_nurse set name=?,sex=?,age=?,work_age=?,price=?,evaluation=?,phone=?,height=?,weight=?,blood_type=?,nation=?,identity=?,constellation=?,animal=?,description=?,area=? where id=?";
+        String sql1 ="delete from app_range  where n_id = ?";
+        String sql2 ="insert into app_range(n_id,type) values(?,?)";
         prestate = (PreparedStatement) conn.prepareStatement(sql);
 
-        prestate.setInt(1, nurse.getNurseId());
-        prestate.setString(2,nurse.getNurseName());
-        prestate.setInt(3,nurse.getNurseSex());
-        prestate.setInt(4,nurse.getNurseAge());
-        prestate.setInt(5,nurse.getNurseWorkAge());
-        prestate.setInt(6,nurse.getNursePrice());
-        prestate.setInt(7,nurse.getNurseEvaluate());
-        prestate.setString(8,nurse.getNursePhone());
-        prestate.setInt(9,nurse.getNurseHeigt());
-        prestate.setInt(10,nurse.getNurseWeight());
-        prestate.setString(11,nurse.getNurseBloodType());
-        prestate.setString(12,nurse.getNurseNation());
-        prestate.setString(13,nurse.getNurseIdentity());
-        prestate.setString(14,nurse.getNurseConstellation());
-        prestate.setString(15,nurse.getNurseAnimal());
-        prestate.setString(16,nurse.getNurseDescription());
-        prestate.setString(17,nurse.getNurseArea());
+
+        prestate.setString(1,nurse.getNurseName());
+        prestate.setInt(2,nurse.getNurseSex());
+        prestate.setInt(3,nurse.getNurseAge());
+        prestate.setInt(4,nurse.getNurseWorkAge());
+        prestate.setInt(5,nurse.getNursePrice());
+        prestate.setInt(6,nurse.getNurseEvaluate());
+        prestate.setString(7,nurse.getNursePhone());
+        prestate.setInt(8,nurse.getNurseHeigt());
+        prestate.setInt(9,nurse.getNurseWeight());
+        prestate.setString(10,nurse.getNurseBloodType());
+        prestate.setString(11,nurse.getNurseNation());
+        prestate.setString(12,nurse.getNurseIdentity());
+        prestate.setString(13,nurse.getNurseConstellation());
+        prestate.setString(14,nurse.getNurseAnimal());
+        prestate.setString(15,nurse.getNurseDescription());
+        prestate.setString(16,nurse.getNurseArea());
+        prestate.setString(17,nurse.getNurseIdentity());
 
 
 
         int i =prestate.executeUpdate();
-        int j =0;
+        int j =0,z=0;
+
         prestate = (PreparedStatement) conn.prepareStatement(sql1);
+        j=prestate.executeUpdate();
+
+
+        prestate = (PreparedStatement) conn.prepareStatement(sql2);
         for(int k=0;k<nurse.getNurseProtectArea().size();k++){
             prestate.setInt(1, nurse.getNurseId());
             prestate.setInt(2, nurse.getNurseProtectArea().get(k));
-            j =j+prestate.executeUpdate();
+            z =z+prestate.executeUpdate();
         }
 
 
 
-        if(i==1&&j==nurse.getNurseProtectArea().size()){
+        if(i==1&&z==nurse.getNurseProtectArea().size()){
             return true;
         }
         else return  false;
