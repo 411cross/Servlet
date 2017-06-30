@@ -18,10 +18,13 @@
         <servlet-class>com.company.Servlet.FilterNurseServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>register</servlet-name>
+        <servlet-name>modifyUserInformation</servlet-name>
         <servlet-class>com.company.Servlet.RegisterServlet</servlet-class>
     </servlet>
-
+    <servlet>
+        <servlet-name>register</servlet-name>
+        <servlet-class>com.company.Servlet.ModifyUserServlet</servlet-class>
+    </servlet>
 
 
   <servlet-mapping>
@@ -42,5 +45,9 @@
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>modifyUserInformation</servlet-name>
+        <url-pattern>/modifyuserinformation</url-pattern>
     </servlet-mapping>
 </web-app>

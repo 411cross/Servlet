@@ -1,6 +1,7 @@
 package com.company.Service;
 
 import com.company.DAO.DBconnect;
+import com.company.Entity.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -33,4 +34,31 @@ public class UserService {
 
         return flag;
     }
+
+    /*用户修改个人信息*/
+
+    static  public boolean modifyUserInfomation(User user) throws SQLException {
+
+
+        boolean flag = false;
+        Connection conn = DBconnect.getConn();
+
+        PreparedStatement prestate;
+
+        String sql = "update app_user set passord=?,name=?,avatar=? where id =?";
+        prestate = (PreparedStatement) conn.prepareStatement(sql);
+        prestate.setString(1, user.getPassword());
+        prestate.setString(2, user.getName());
+        prestate.setString(3, user.getAvatar());
+        prestate.setString(4, user.getId());
+
+        int i = prestate.executeUpdate();   //返回更新数目的条数
+        if(i == 1) flag = true;
+        else flag =false;
+
+        return flag;
+
+
+    }
+
 }
