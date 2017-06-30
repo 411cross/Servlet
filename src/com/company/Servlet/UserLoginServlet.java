@@ -22,14 +22,16 @@ public class UserLoginServlet extends HttpServlet{
         String password = req.getParameter("password");
 
         User user = new User(id,password,name);
-
+        StringBuffer stringBuffer = new StringBuffer();
         if(LoginService.userLogin(user)){
-            System.out.println("{\"StatueCode\":\"200\",\"Message\":\"成功\"}");
+
+            stringBuffer.append("{'message':[{'code':'200','str':'登录成功'}]}");    //生成User的JSON 格式
 
         }else{
+            stringBuffer.append("{'message':[{'code':'100','str':'登录失败'}]}");
 
         }
-
+        resp.getOutputStream().write(stringBuffer.toString().getBytes("GBK"));
 
 
 

@@ -13,14 +13,34 @@
   	<servlet-name>adminLogin</servlet-name>
   	<servlet-class>com.company.Servlet.AdminLoginServlet</servlet-class>
   </servlet>
-  
+    <servlet>
+        <servlet-name>nurseFilter</servlet-name>
+        <servlet-class>com.company.Servlet.FilterNurseServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>register</servlet-name>
+        <servlet-class>com.company.Servlet.RegisterServlet</servlet-class>
+    </servlet>
+
+
+
   <servlet-mapping>
     <servlet-name>userLogin</servlet-name>
     <url-pattern>/userlogin</url-pattern>
   </servlet-mapping>
   
   <servlet-mapping>
-  	<servlet-name>adminLogin</servlet-name>
-  	<url-pattern>/adminlogin</url-pattern>
+  	<servlet-name>nurseFilter</servlet-name>
+  	<url-pattern>/nursefilter</url-pattern>
   </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>adminLogin</servlet-name>
+        <url-pattern>/adminlogin</url-pattern>
+    </servlet-mapping>register
+
+    <servlet-mapping>
+        <servlet-name>register</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
 </web-app>
