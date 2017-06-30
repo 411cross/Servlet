@@ -1,8 +1,8 @@
 package com.company.Servlet;
 
-import com.company.Entity.User;
 import com.company.Service.GeneralService;
 import com.company.Service.UserService;
+import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
 import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
@@ -15,28 +15,26 @@ import java.sql.SQLException;
 /**
  * Created by Administrator on 2017/6/30.
  */
-public class ModifyUserServlet extends HttpServlet {
-
+public class AddFamilyRelationServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doPost(req, resp);
+        String Message = null;
         JSONObject jsonObject = GeneralService.toJsonObject(req);
-        String id = jsonObject.getString("id");
-        String password = jsonObject.getString("password");
-        String name =jsonObject.getString("name");
-        String avatar =jsonObject.getString("avatar");
-        User user = new User();
+        String u_id = jsonObject.getString("u_id");
+        int p_id = jsonObject.getInt("p_id");
         StringBuffer stringBuffer = new StringBuffer();
         try {
-            if(UserService.modifyUserInfomation(user)){
-                stringBuffer.append("{\"statueCode\":\"200\",\"message\":\"成功\"}");
-            }else{
-                stringBuffer.append("{\"statueCode\":\"100\",\"message\":\"失败\"}");
-            }
+            Message = UserService.addFamilyRelationship(u_id,p_id);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        stringBuffer.append(Message);
         resp.getOutputStream().write(stringBuffer.toString().getBytes("GBK"));
+
+
+
 
 
     }

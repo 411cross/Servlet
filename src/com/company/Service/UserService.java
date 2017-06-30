@@ -5,6 +5,7 @@ import com.company.Entity.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -60,5 +61,49 @@ public class UserService {
 
 
     }
+
+    /*增加家属关系
+    * 输入 用户ID 和 病人ID
+    * 错误状态码 400 ： 已有家属关系，不用添加
+    *            401 ： 添加出错
+    * 正确：200
+    * */
+
+    static public String addFamilyRelationship(String userID,int patientID) throws SQLException {
+
+        String statueCode = "";
+        Connection conn = DBconnect.getConn();
+
+        PreparedStatement prestate;
+        String sql = "select * from app_relation where u_id=? and p_id=?";
+        String sql1 = "insert into app_relation(u_id,p_id) values(?,?)";
+        prestate = (PreparedStatement) conn.prepareStatement(sql);
+        prestate.setString(1,userID);
+        prestate.setInt(2,patientID);
+
+
+        ResultSet result = prestate.executeQuery();
+        if(result.next()){
+            statueCode="{\"StatueCode\":\"400\",\"Message\":\"出错,已有家属关系.\"}";
+            return statueCode;
+        }
+        else{
+            prestate = (PreparedStatement) conn.prepareStatement(sql1);
+            prestate.setString(1,userID);
+            prestate.setInt(2,patientID);
+            int i = prestate.executeUpdate();
+            if(i==1){
+                statueCode="{\"StatueCode\":\"200\",\"Message\":\"成功\"}";
+                return statueCode;
+            }else{
+                statueCode="{\"StatueCode\":\"401\",\"Message\":\"添加出错\"}";
+                return statueCode;
+            }
+        }
+
+
+
+    }
+
 
 }
