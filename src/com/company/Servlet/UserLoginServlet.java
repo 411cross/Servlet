@@ -4,7 +4,9 @@ package com.company.Servlet;
  * Created by Administrator on 2017/6/29.
  */
 import com.company.Entity.User;
+import com.company.Service.GeneralService;
 import com.company.Service.LoginService;
+import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,13 +19,13 @@ public class UserLoginServlet extends HttpServlet{
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doPost(req, resp);
 
-        String id =req.getParameter("id");
-        String name = req.getParameter("name");
-        String password = req.getParameter("password");
+        JSONObject jsonObject = GeneralService.toJsonObject(req);
+        String id = jsonObject.getString("id");
+        String password = jsonObject.getString("password");
 
-        User user = new User(id,password,name);
         StringBuffer stringBuffer = new StringBuffer();
-        if(LoginService.userLogin(user)){
+
+        if(LoginService.userLogin(id, password)){
 
             stringBuffer.append("{'message':[{'code':'200','str':'登录成功'}]}");    //生成User的JSON 格式
 
@@ -33,8 +35,6 @@ public class UserLoginServlet extends HttpServlet{
         }
         resp.getOutputStream().write(stringBuffer.toString().getBytes("GBK"));
 
-
-
-
     }
+
 }
