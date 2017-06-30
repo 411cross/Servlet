@@ -30,6 +30,7 @@ public class GeneralService {
         PreparedStatement prestate;
 
         String sql = "select * from app_user where id =?";
+
         try {
             prestate = conn.prepareStatement(sql);
 
@@ -62,13 +63,14 @@ public class GeneralService {
 
     static public Patient getPatient(int patientID) {
 
-        Patient patient = new Patient();
+        Patient patient = null;
 
         Connection conn = DBconnect.getConn();
 
         PreparedStatement prestate;
 
         String sql = "select * from app_patient where id =?";
+
         try {
             prestate = conn.prepareStatement(sql);
 

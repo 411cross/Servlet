@@ -40,7 +40,7 @@ public class FilterNurseServlet extends HttpServlet {
         }
 
         String jsonString = gson.toJson(NurseList);
-        String response = "{\"statueCode\":\"200\"," + jsonString;
+        String response = "{\"statueCode\":\"200\",\"data\":" + jsonString + "}";
 
         resp.getOutputStream().write(response.getBytes("GBK"));
 
