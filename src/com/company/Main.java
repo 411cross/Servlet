@@ -35,6 +35,7 @@ public class Main {
 //		        pstmt.setString(2, student.getSex());
 //		        pstmt.setString(3, student.getAge());
 //		        i = pstmt.executeUpdate();
+
             pstmt.close();
             conn.close();
         } catch (SQLException e) {

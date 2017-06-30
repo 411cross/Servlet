@@ -12,7 +12,7 @@ import java.sql.ResultSet;
  * Created by Administrator on 2017/6/29.
  */
 public class LoginService {
-    static public boolean userLogin(User user){
+    static public boolean userLogin(String id, String password){
         boolean flag = false;
 
         Connection conn = DBconnect.getConn();
@@ -23,8 +23,8 @@ public class LoginService {
         try{
             prestate = conn.prepareStatement(sql);
 
-            prestate.setString(1, user.getId());
-            prestate.setString(2, user.getPassword());
+            prestate.setString(1, id);
+            prestate.setString(2, password);
 
             ResultSet result = prestate.executeQuery();
 
